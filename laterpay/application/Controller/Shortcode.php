@@ -341,4 +341,27 @@ class LaterPay_Controller_Shortcode extends LaterPay_Controller_Abstract
         return $html_button;
     }
 
+    /**
+     * Add a quicktag to the TinyMCE editor to insert the shortcode 'laterpay_premium_download'.
+     *
+     * @return void
+     */
+    function quicktag_premium_download_box() {
+        if ( wp_script_is( 'quicktags' ) ) {
+            ?>
+                <script>
+                    QTags.addButton(
+                        'lp_premiumDownload', // button id
+                        'LaterPay', // button text
+                        '[laterpay_premium_download target_post_id="" heading_text="" description_text=""]', // opening tag
+                        '', // no closing tag
+                        '', // no keyboard shortcut
+                        '<?php _e( "Insert LaterPay shortcode [laterpay_premium_download]", "laterpay" ); ?>', // button title
+                        19 // render at last position of second button row
+                    );
+                </script>
+            <?php
+        }
+    }
+
 }

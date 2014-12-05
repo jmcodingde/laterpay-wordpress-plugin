@@ -86,6 +86,12 @@ class LaterPay_Core_Bootstrap
         // add shortcode 'laterpay' as alias for shortcode 'laterpay_premium_download':
         add_shortcode( 'laterpay',                              array( $shortcode_controller, 'render_premium_download_box' ) );
 
+        // add quicktags for the shortcodes to TinyMCE (WP >= 3.3 required)
+        global $wp_version;
+        if ( version_compare( $wp_version, '3.3', '>=' ) ) {
+            add_action( 'admin_print_footer_scripts',           array( $shortcode_controller, 'quicktag_premium_download_box' ), 100 );
+        }
+
         // check if the plugin is correctly configured and working
         if ( ! LaterPay_Helper_View::plugin_is_working() ) {
             return;
