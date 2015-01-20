@@ -407,7 +407,7 @@ class LaterPay_Controller_Post extends LaterPay_Controller_Abstract
             $context
         );
 
-        if ( ! $browser_supports_cookies || $browser_is_crawler ) {
+        if ( ! $browser_supports_cookies || $browser_is_crawler || is_feed() ) {
             return;
         }
 
